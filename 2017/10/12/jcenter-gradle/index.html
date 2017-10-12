@@ -6,19 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>将代码上传到jCenter的最简单方式 | yhyzgn的博客</title>
+  <title>通过Gradle将代码上传到jCenter | yhyzgn的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为了方便开发，经常会创建一些快速开发的库，传到jCenter中。">
-<meta name="keywords" content="Android,jCenter">
+  <meta name="description" content="当下，很多开发者都有自己的开发仓库。本文记录的是通过Gradle将代码上传到jCenter中一个比较简单的方式。">
+<meta name="keywords" content="Android,Gradle,jCenter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="将代码上传到jCenter的最简单方式">
-<meta property="og:url" content="http://yoursite.com/2017/10/12/jcenter-bintray/index.html">
+<meta property="og:title" content="通过Gradle将代码上传到jCenter">
+<meta property="og:url" content="http://yoursite.com/2017/10/12/jcenter-gradle/index.html">
 <meta property="og:site_name" content="yhyzgn的博客">
-<meta property="og:description" content="为了方便开发，经常会创建一些快速开发的库，传到jCenter中。">
-<meta property="og:updated_time" content="2017-10-12T13:32:39.522Z">
+<meta property="og:description" content="当下，很多开发者都有自己的开发仓库。本文记录的是通过Gradle将代码上传到jCenter中一个比较简单的方式。">
+<meta property="og:image" content="http://yoursite.com/assets/img/blog/jcenter-gradle/project.png">
+<meta property="og:image" content="http://yoursite.com/assets/img/blog/jcenter-gradle/sign_up.png">
+<meta property="og:image" content="http://yoursite.com/assets/img/blog/jcenter-gradle/add_new_repository.png">
+<meta property="og:image" content="http://yoursite.com/assets/img/blog/jcenter-gradle/add_new_repository_maven.png">
+<meta property="og:image" content="http://yoursite.com/assets/img/blog/jcenter-gradle/get_api_key.png">
+<meta property="og:image" content="http://yoursite.com/assets/img/blog/jcenter-gradle/api_key_and_name.png">
+<meta property="og:image" content="http://yoursite.com/assets/img/blog/jcenter-gradle/click_enter_lib.png">
+<meta property="og:image" content="http://yoursite.com/assets/img/blog/jcenter-gradle/maven_repository.png">
+<meta property="og:updated_time" content="2017-10-12T15:32:40.052Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="将代码上传到jCenter的最简单方式">
-<meta name="twitter:description" content="为了方便开发，经常会创建一些快速开发的库，传到jCenter中。">
+<meta name="twitter:title" content="通过Gradle将代码上传到jCenter">
+<meta name="twitter:description" content="当下，很多开发者都有自己的开发仓库。本文记录的是通过Gradle将代码上传到jCenter中一个比较简单的方式。">
+<meta name="twitter:image" content="http://yoursite.com/assets/img/blog/jcenter-gradle/project.png">
   
     <link rel="alternative" href="/atom.xml" title="yhyzgn的博客" type="application/atom+xml">
   
@@ -152,19 +161,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jcenter-bintray" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-jcenter-gradle" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      将代码上传到jCenter的最简单方式
+      通过Gradle将代码上传到jCenter
     </h1>
   
 
         
-        <a href="/2017/10/12/jcenter-bintray/" class="archive-article-date">
+        <a href="/2017/10/12/jcenter-gradle/" class="archive-article-date">
   	<time datetime="2017-10-12T13:19:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
 </a>
         
@@ -172,9 +181,64 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>为了方便开发，经常会创建一些快速开发的库，传到<code>jCenter</code>中。</p>
+        <p>当下，很多开发者都有自己的开发仓库。本文记录的是通过<code>Gradle</code>将代码上传到<code>jCenter</code>中一个比较简单的方式。</p>
+<a id="more"></a>
+<h2 id="1、完成自己的库"><a href="#1、完成自己的库" class="headerlink" title="1、完成自己的库"></a>1、完成自己的库</h2><blockquote>
+<p>将<code>library</code>与<code>app</code>分开，封装成不同的模块。代码上传时只上传<code>library</code>模块。如图所示</p>
 </blockquote>
+<p><img src="/assets/img/blog/jcenter-gradle/project.png" alt="project"></p>
+<h2 id="2、Bintray配置"><a href="#2、Bintray配置" class="headerlink" title="2、Bintray配置"></a>2、<code>Bintray</code>配置</h2><h4 id="1、注册账号"><a href="#1、注册账号" class="headerlink" title="1、注册账号"></a>1、注册账号</h4><blockquote>
+<p>进入注册就是个大坑。官网注册时默认是企业账户，所以不能直接在官网上点击注册，必须使用以下连        接完成注册。</p>
+</blockquote>
+<p><code>Bintray</code>注册地址：<a href="https://bintray.com/signup/oss" target="_blank" rel="external">https://bintray.com/signup/oss</a>，效果如下，填写相应信息即可完成注册</p>
+<p><img src="/assets/img/blog/jcenter-gradle/sign_up.png" alt="project"></p>
+<h4 id="2、创建maven仓库"><a href="#2、创建maven仓库" class="headerlink" title="2、创建maven仓库"></a>2、创建<code>maven</code>仓库</h4><blockquote>
+<p>登录成功后进入主页，点击<code>Add New Repository</code>进入添加仓库页面，<code>Name</code>写<code>maven</code>（因为上传的时候不指定的话默认仓库名是<code>maven</code>），<code>Type</code>字段必须选择为<code>Maven</code>。</p>
+</blockquote>
+<p><img src="/assets/img/blog/jcenter-gradle/add_new_repository.png" alt="project"></p>
+<p><img src="/assets/img/blog/jcenter-gradle/add_new_repository_maven.png" alt="project"></p>
+<h4 id="3、获取Username和API-KEY"><a href="#3、获取Username和API-KEY" class="headerlink" title="3、获取Username和API KEY"></a>3、获取<code>Username</code>和<code>API KEY</code></h4><blockquote>
+<p>后续上传步骤中必用的两个参数，按如下步骤获取</p>
+</blockquote>
+<p><img src="/assets/img/blog/jcenter-gradle/get_api_key.png" alt="project"></p>
+<p><img src="/assets/img/blog/jcenter-gradle/api_key_and_name.png" alt="project"></p>
+<h2 id="3、配置Gradle参数"><a href="#3、配置Gradle参数" class="headerlink" title="3、配置Gradle参数"></a>3、配置<code>Gradle</code>参数</h2><blockquote>
+<p>最简单的方式是使用开源库<code>bintray-release</code>来上传代码，具体请参考<a href="https://github.com/novoda/bintray-release" target="_blank" rel="external">bintray-release</a></p>
+</blockquote>
+<h4 id="1、配置项目build-gradle文件"><a href="#1、配置项目build-gradle文件" class="headerlink" title="1、配置项目build.gradle文件"></a>1、配置项目<code>build.gradle</code>文件</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">  repositories &#123;</div><div class="line">    jcenter()</div><div class="line">  &#125;</div><div class="line">  dependencies &#123;</div><div class="line">    classpath <span class="string">'com.novoda:bintray-release:0.5.0'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2、配置仓库build-gradle文件"><a href="#2、配置仓库build-gradle文件" class="headerlink" title="2、配置仓库build.gradle文件"></a>2、配置仓库<code>build.gradle</code>文件</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">apply <span class="string">plugin:</span> <span class="string">'com.novoda.bintray-release'</span></div><div class="line"><span class="comment">// ...</span></div><div class="line"><span class="comment">// 末尾添加以下代码</span></div><div class="line">publish &#123;</div><div class="line">  userOrg = <span class="string">'username'</span></div><div class="line">  groupId = <span class="string">'com.yhy.widget'</span></div><div class="line">  artifactId = <span class="string">'tabnav'</span></div><div class="line">  publishVersion = <span class="string">'version'</span></div><div class="line">  desc = <span class="string">'description'</span></div><div class="line">  website = <span class="string">'https://github.com/yhyzgn/TabPager'</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 添加依赖时对应代码为：compile 'groupId:artifactId:publishVersion'</span></div></pre></td></tr></table></figure>
+<h2 id="4、将代码上传到Bintray"><a href="#4、将代码上传到Bintray" class="headerlink" title="4、将代码上传到Bintray"></a>4、将代码上传到<code>Bintray</code></h2><blockquote>
+<p>在项目根目录下执行以下命令。将<code>Username</code>和<code>API_KEY</code>分别替换为之前获取到的<code>Username</code>和<code>API_KEY</code>。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew clean build bintrayUpload -PbintrayUser=Username -PbintrayKey=API_KEY -PdryRun=false</div></pre></td></tr></table></figure>
+<h2 id="5、将库添加到jCenter"><a href="#5、将库添加到jCenter" class="headerlink" title="5、将库添加到jCenter"></a>5、将库添加到<code>jCenter</code></h2><blockquote>
+<p>以上命令执行结束后如果提示<code>BUILD SUCCESSFUL</code>，说明代码上传成功，在<code>bintray</code>上打开刚刚创建的<code>maven</code>仓库，然后找到刚刚上传成功的库，点击图标位置，进入库的详情页面，再点击页面右下角<code>Linked to</code>区域中的<code>Add to jCenter</code>按钮，进入提交页面，直接提交即可。</p>
+</blockquote>
+<p><img src="/assets/img/blog/jcenter-gradle/click_enter_lib.png" alt="project"></p>
+<h2 id="6、上传完成，依赖引用库"><a href="#6、上传完成，依赖引用库" class="headerlink" title="6、上传完成，依赖引用库"></a>6、上传完成，依赖引用库</h2><blockquote>
+<p>到此为止，代码库上传完成。接下来只需要等待审核通过就可以直接依赖引用啦，一般<code>1-3</code>天处结果。</p>
+<p>不过审核期间也可以使用该库，只需要再项目<code>build.gradle</code>中添加该<code>maven</code>仓库地址即可。</p>
+</blockquote>
+<h4 id="1、审核期间使用方法"><a href="#1、审核期间使用方法" class="headerlink" title="1、审核期间使用方法"></a>1、审核期间使用方法</h4><blockquote>
+<p>用法如下</p>
+</blockquote>
+<ul>
+<li><p>获取<code>maven</code>仓库地址</p>
+<p><img src="/assets/img/blog/jcenter-gradle/maven_repository.png" alt="project"></p>
+</li>
+<li><p>项目<code>build.gradle</code>配置如下</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">allprojects &#123;</div><div class="line">  repositories &#123;</div><div class="line">    jcenter()</div><div class="line">    maven &#123; url <span class="string">'上图中maven仓库地址'</span> &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>app</code>模块<code>build.gradle</code>配置如下</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">  compile <span class="string">'groupId:artifactId:publishVersion'</span></div><div class="line">  <span class="comment">// 如果依赖失败的话，在末尾加上 @aar</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="2、审核通过后使用方法"><a href="#2、审核通过后使用方法" class="headerlink" title="2、审核通过后使用方法"></a>2、审核通过后使用方法</h4><blockquote>
+<p>直接在<code>app</code>模块下添加依赖即可</p>
+</blockquote>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">  compile <span class="string">'groupId:artifactId:publishVersion'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>就这些吧。。希望有用！！</p>
 
       
 
@@ -189,6 +253,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Gradle</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -248,7 +316,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/12/jcenter-bintray/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/12/jcenter-gradle/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -273,6 +341,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、完成自己的库"><span class="toc-number">1.</span> <span class="toc-text">1、完成自己的库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、Bintray配置"><span class="toc-number">2.</span> <span class="toc-text">2、Bintray配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、注册账号"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、注册账号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、创建maven仓库"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、创建maven仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、获取Username和API-KEY"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、获取Username和API KEY</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、配置Gradle参数"><span class="toc-number">3.</span> <span class="toc-text">3、配置Gradle参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、配置项目build-gradle文件"><span class="toc-number">3.0.1.</span> <span class="toc-text">1、配置项目build.gradle文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、配置仓库build-gradle文件"><span class="toc-number">3.0.2.</span> <span class="toc-text">2、配置仓库build.gradle文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、将代码上传到Bintray"><span class="toc-number">4.</span> <span class="toc-text">4、将代码上传到Bintray</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、将库添加到jCenter"><span class="toc-number">5.</span> <span class="toc-text">5、将库添加到jCenter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、上传完成，依赖引用库"><span class="toc-number">6.</span> <span class="toc-text">6、上传完成，依赖引用库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、审核期间使用方法"><span class="toc-number">6.0.1.</span> <span class="toc-text">1、审核期间使用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、审核通过后使用方法"><span class="toc-number">6.0.2.</span> <span class="toc-text">2、审核通过后使用方法</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -398,6 +479,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Gradle</a>
               </li>
              
               <li class="article-tag-list-item">

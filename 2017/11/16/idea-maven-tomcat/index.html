@@ -6,17 +6,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.yhyzgn.top">
-  <title>在路上...</title>
+  <title>idea-maven-tomcat | 在路上...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="别跟我谈理想，我上班就是为了钱，我的理想是不上班...">
-<meta property="og:type" content="website">
-<meta property="og:title" content="在路上...">
-<meta property="og:url" content="http://blog.yhyzgn.top/index.html">
+  <meta name="description" content="就Intellij Idea下创建Maven项目，并配置Tomcat的过程做个简单记录。  安装软件自不用说">
+<meta name="keywords" content="-Idea -Maven -Tomcat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="idea-maven-tomcat">
+<meta property="og:url" content="http://blog.yhyzgn.top/2017/11/16/idea-maven-tomcat/index.html">
 <meta property="og:site_name" content="在路上...">
-<meta property="og:description" content="别跟我谈理想，我上班就是为了钱，我的理想是不上班...">
+<meta property="og:description" content="就Intellij Idea下创建Maven项目，并配置Tomcat的过程做个简单记录。  安装软件自不用说">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/create_project_1.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/create_project_2.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/create_project_3.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/pom_packagin_war.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/project_modules.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/project_artifacts_1.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/project_artifacts_2.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/project_artifacts_3.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/server_config_1.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/server_config_2.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/server_config_3.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/server_config_4.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/server_config_5.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/test_index.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/test_result.png">
+<meta property="og:updated_time" content="2017-11-16T15:41:01.134Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在路上...">
-<meta name="twitter:description" content="别跟我谈理想，我上班就是为了钱，我的理想是不上班...">
+<meta name="twitter:title" content="idea-maven-tomcat">
+<meta name="twitter:description" content="就Intellij Idea下创建Maven项目，并配置Tomcat的过程做个简单记录。  安装软件自不用说">
+<meta name="twitter:image" content="http://blog.yhyzgn.top/assets/img/blog/idea-maven-tomcat/create_project_1.png">
   
     <link rel="alternative" href="/atom.xml" title="在路上..." type="application/atom+xml">
   
@@ -150,16 +168,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-idea-maven-tomcat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-idea-maven-tomcat" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/16/idea-maven-tomcat/">idea-maven-tomcat</a>
+    <h1 class="article-title" itemprop="name">
+      idea-maven-tomcat
     </h1>
   
 
@@ -176,9 +192,84 @@
 <blockquote>
 <p>安装软件自不用说</p>
 </blockquote>
-        
-          <a class="article-more-a" href="/2017/11/16/idea-maven-tomcat/#more">more >></a>
-        
+<a id="more"></a>
+<h2 id="1、创建项目"><a href="#1、创建项目" class="headerlink" title="1、创建项目"></a>1、创建项目</h2><ul>
+<li><p>创建</p>
+<blockquote>
+<p>选择<code>Maven</code>，表示创建<code>Maven</code>项目，<code>Create from archetype</code>可以不选</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/assets/img/blog/idea-maven-tomcat/create_project_1.png" alt="project"></p>
+<ul>
+<li><p>填写<code>GroupId</code>和<code>ArtifactId</code></p>
+<blockquote>
+<p>前者一般即使项目包名，后者为项目名称即可。</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/assets/img/blog/idea-maven-tomcat/create_project_2.png" alt="project"></p>
+<ul>
+<li><p>创建完成</p>
+<blockquote>
+<p>配置项目名称和存放位置</p>
+</blockquote>
+<p><img src="/assets/img/blog/idea-maven-tomcat/create_project_3.png" alt="project"></p>
+</li>
+<li><p>修改<code>pom.xml</code></p>
+<blockquote>
+<p>修改<code>pom.xml</code>文件，将打包类型配置配置为<code>war</code>，如图</p>
+</blockquote>
+<p><img src="/assets/img/blog/idea-maven-tomcat/pom_packagin_war.png" alt="project"></p>
+</li>
+</ul>
+<h2 id="2、配置Modules"><a href="#2、配置Modules" class="headerlink" title="2、配置Modules"></a>2、配置<code>Modules</code></h2><blockquote>
+<p>如图，添加后记得修改<code>web.xml</code>路径。然后点击<code>Create Artifact</code>按钮创建<code>Artifact</code>，也可以先不添加。</p>
+</blockquote>
+<p><img src="/assets/img/blog/idea-maven-tomcat/project_modules.png" alt="project"></p>
+<h2 id="3、配置Artifacts"><a href="#3、配置Artifacts" class="headerlink" title="3、配置Artifacts"></a>3、配置<code>Artifacts</code></h2><blockquote>
+<p>步骤如图</p>
+</blockquote>
+<p><img src="/assets/img/blog/idea-maven-tomcat/project_artifacts_1.png" alt="project"></p>
+<p><img src="/assets/img/blog/idea-maven-tomcat/project_artifacts_2.png" alt="project"></p>
+<p><img src="/assets/img/blog/idea-maven-tomcat/project_artifacts_3.png" alt="project"></p>
+<h2 id="4、配置Tomcat"><a href="#4、配置Tomcat" class="headerlink" title="4、配置Tomcat"></a>4、配置<code>Tomcat</code></h2><blockquote>
+<p>步骤如图</p>
+</blockquote>
+<ul>
+<li>第一步</li>
+</ul>
+<p><img src="/assets/img/blog/idea-maven-tomcat/server_config_1.png" alt="project"></p>
+<ul>
+<li>第二步</li>
+</ul>
+<p><img src="/assets/img/blog/idea-maven-tomcat/server_config_2.png" alt="project"></p>
+<ul>
+<li>第三步</li>
+</ul>
+<p><img src="/assets/img/blog/idea-maven-tomcat/server_config_3.png" alt="project"></p>
+<ul>
+<li>第四步</li>
+</ul>
+<p><img src="/assets/img/blog/idea-maven-tomcat/server_config_4.png" alt="project"></p>
+<ul>
+<li>第五步，一定要选择后缀为<code>exploded</code>一项</li>
+</ul>
+<p><img src="/assets/img/blog/idea-maven-tomcat/server_config_5.png" alt="project"></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><blockquote>
+<p>至此，<code>Maven</code>和<code>Tomcat</code>配置完成，进入测试步骤</p>
+</blockquote>
+<ul>
+<li><p>在<code>webapp</code>目录下创建<code>index.jsp</code></p>
+<p><img src="/assets/img/blog/idea-maven-tomcat/test_index.png" alt="project"></p>
+</li>
+<li><p>点击<code>run</code>运行后在浏览器看到测试结果说明已经配置正确</p>
+</li>
+</ul>
+<p><img src="/assets/img/blog/idea-maven-tomcat/test_result.png" alt="project"></p>
+<hr>
+<p>记录基本完成！！！</p>
+
       
 
       
@@ -200,16 +291,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/16/idea-maven-tomcat/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.yhyzgn.top/2017/11/16/idea-maven-tomcat/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/12/jcenter-gradle/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">通过Gradle将代码上传到jCenter</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -224,97 +374,48 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-jcenter-gradle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/12/jcenter-gradle/">通过Gradle将代码上传到jCenter</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/12/jcenter-gradle/" class="archive-article-date">
-  	<time datetime="2017-10-12T13:19:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>当下，很多开发者都有自己的开发仓库。本文记录的是通过<code>Gradle</code>将代码上传到<code>jCenter</code>中一个比较简单的方式。</p>
-        
-          <a class="article-more-a" href="/2017/10/12/jcenter-gradle/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Gradle</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jCenter</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/12/jcenter-gradle/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、创建项目"><span class="toc-number">1.</span> <span class="toc-text">1、创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、配置Modules"><span class="toc-number">2.</span> <span class="toc-text">2、配置Modules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、配置Artifacts"><span class="toc-number">3.</span> <span class="toc-text">3、配置Artifacts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、配置Tomcat"><span class="toc-number">4.</span> <span class="toc-text">4、配置Tomcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试"><span class="toc-number">5.</span> <span class="toc-text">测试</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
+  
+  
+  
 
   
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://blog.yhyzgn.top/2017/11/16/idea-maven-tomcat/",
+  owner: 'yhyzgn',
+  repo: 'yhyzgn.github.io',
+  oauth: {
+    client_id: 'ca08cc2446a385198314',
+    client_secret: '806260844b56af63119fa89d207e684d4b7084f5',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -337,8 +438,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

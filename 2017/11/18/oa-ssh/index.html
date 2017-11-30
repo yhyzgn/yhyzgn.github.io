@@ -6,17 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blog.yhyzgn.top">
-  <title>Archives: 2017/11 | 在路上...</title>
+  <title>OA项目———SSH框架搭建 | 在路上...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="别跟我谈理想，我上班就是为了钱，我的理想是不上班...">
-<meta property="og:type" content="website">
-<meta property="og:title" content="在路上...">
-<meta property="og:url" content="http://blog.yhyzgn.top/archives/2017/11/index.html">
+  <meta name="description" content="最近心血来潮，想做个简单的OA系统，顺便回顾下SSH框架，遂有此。该篇主要记录SSH框架搭建的基本过程，便于以后有案可查。">
+<meta name="keywords" content="OA,SSH">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OA项目———SSH框架搭建">
+<meta property="og:url" content="http://blog.yhyzgn.top/2017/11/18/oa-ssh/index.html">
 <meta property="og:site_name" content="在路上...">
-<meta property="og:description" content="别跟我谈理想，我上班就是为了钱，我的理想是不上班...">
+<meta property="og:description" content="最近心血来潮，想做个简单的OA系统，顺便回顾下SSH框架，遂有此。该篇主要记录SSH框架搭建的基本过程，便于以后有案可查。">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/oa-ssh/struts-test-success.png">
+<meta property="og:image" content="http://blog.yhyzgn.top/assets/img/blog/oa-ssh/struts-spring-success.png">
+<meta property="og:updated_time" content="2017-11-30T16:16:37.794Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在路上...">
-<meta name="twitter:description" content="别跟我谈理想，我上班就是为了钱，我的理想是不上班...">
+<meta name="twitter:title" content="OA项目———SSH框架搭建">
+<meta name="twitter:description" content="最近心血来潮，想做个简单的OA系统，顺便回顾下SSH框架，遂有此。该篇主要记录SSH框架搭建的基本过程，便于以后有案可查。">
+<meta name="twitter:image" content="http://blog.yhyzgn.top/assets/img/blog/oa-ssh/struts-test-success.png">
   
     <link rel="alternative" href="/atom.xml" title="在路上..." type="application/atom+xml">
   
@@ -150,36 +155,263 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-oa-ssh" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/18/oa-ssh/" class="archive-article-date">
-  	<time datetime="2017-11-18T14:18:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/18/oa-ssh/">OA项目———SSH框架搭建</a>
+    <h1 class="article-title" itemprop="name">
+      OA项目———SSH框架搭建
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/11/18/oa-ssh/" class="archive-article-date">
+  	<time datetime="2017-11-18T14:18:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近心血来潮，想做个简单的<code>OA</code>系统，顺便回顾下<code>SSH</code>框架，遂有此。该篇主要记录<code>SSH</code>框架搭建的基本过程，便于以后有案可查。</p>
+<a id="more"></a>
+<h2 id="开发环境及工具"><a href="#开发环境及工具" class="headerlink" title="开发环境及工具"></a>开发环境及工具</h2><ul>
+<li><p>开发环境</p>
+<blockquote>
+<p><code>IDE</code> : <code>Intellij Idea 2017.2.5</code></p>
+<p><code>Maven</code> : <code>3.3.9</code></p>
+<p><code>Server</code> : <code>Tomcat 8.5.23</code></p>
+<p><code>DataBase</code> : <code>MySQL 5.5.51</code></p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p><code>SSH</code>各框架版本</p>
+<blockquote>
+<p><code>Struts2</code> : <code>2.5.13</code></p>
+<p><code>Spring</code> : <code>5.0.0.RELEASE</code></p>
+<p><code>Hibernate</code> : <code>5.2.12.Final</code></p>
+</blockquote>
+</li>
+<li><p>其他</p>
+<blockquote>
+<p><code>JDBC Driver</code> : <code>6.0.6</code></p>
+<p><code>c3p0</code> : <code>0.9.5.2</code></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="一、创建项目，配置Maven和Tomcat环境"><a href="#一、创建项目，配置Maven和Tomcat环境" class="headerlink" title="一、创建项目，配置Maven和Tomcat环境"></a>一、创建项目，配置<code>Maven</code>和<code>Tomcat</code>环境</h2><blockquote>
+<p>该步骤请参照 <a href="/2017/11/16/idea-maven-tomcat/">Intellij Idea下搭建Maven框架与Tomcat服务器</a></p>
+</blockquote>
+<h2 id="二、配置Struts2框架"><a href="#二、配置Struts2框架" class="headerlink" title="二、配置Struts2框架"></a>二、配置<code>Struts2</code>框架</h2><ul>
+<li><p>通过<code>Maven</code>添加<code>Struts2</code>依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version.struts2</span>&gt;</span>2.5.13<span class="tag">&lt;/<span class="name">version.struts2</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.struts<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>struts2-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;version.struts2&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>web.xml</code>中配置<code>Struts2</code>的核心过滤器</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>Struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>Struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- /* 写法会导致action找不到，404错误--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>log4j</code>配置</p>
+<blockquote>
+<p>在<code>/src/main/resources/</code>目录下创建<code>log4j.properties</code>文件，内容一般如下</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># 日志输入等级</div><div class="line">log4j.rootLogger=INFO, Console</div><div class="line"># 日志信息在控制台输出</div><div class="line">log4j.appender.Console=org.apache.log4j.ConsoleAppender</div><div class="line"># 可以灵活地指定布局模式</div><div class="line">log4j.appender.Console.layout=org.apache.log4j.PatternLayout</div><div class="line"># 格式化指定的消息</div><div class="line">log4j.appender.Console.layout.ConversionPattern=%d [%t] %-5p %c - %m%n</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>log4j2.xml</code>配置</p>
+<blockquote>
+<p><code>log4j 2.0</code>与以往的<code>1.x</code>有一个明显的不同，其配置文件只能采用<code>.xml</code>, <code>.json</code>或者<code>.jsn</code>。在默认情况下，系统选择<code>configuration</code>文件的优先级如下</p>
+<ol>
+<li><code>classpath</code>下名为 <code>log4j-test.json</code> 或者<code>log4j-test.jsn</code>文件</li>
+<li><code>classpath</code>下名为<code>log4j2-test.xml</code></li>
+<li><code>classpath</code>下名为 <code>log4j.json</code> 或者<code>log4j.jsn</code>文件</li>
+<li><code>classpath</code>下名为 <code>log4j2.xml</code></li>
+</ol>
+<p>这里选择第四种，在<code>/src/main/resources/</code>目录下创建<code>log4j2.xml</code>文件，内容如下</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">status</span>=<span class="string">"warn"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--设置log4j2的自身log级别为warn--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">appenders</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">console</span> <span class="attr">name</span>=<span class="string">"Console"</span> <span class="attr">target</span>=<span class="string">"SYSTEM_OUT"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">console</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">"RollingFileInfo"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;sys:user.home&#125;/logs/hpaasvc/info.log"</span></span></div><div class="line"><span class="tag">                 <span class="attr">filePattern</span>=<span class="string">"$&#123;sys:user.home&#125;/logs/hpaasvc/$$&#123;date:yyyy-MM&#125;/info-%d&#123;yyyy-MM-dd&#125;-%i.log"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Filters</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"INFO"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"WARN"</span> <span class="attr">onMatch</span>=<span class="string">"DENY"</span> <span class="attr">onMismatch</span>=<span class="string">"NEUTRAL"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">Filters</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"100 MB"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">"RollingFileWarn"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;sys:user.home&#125;/logs/hpaasvc/warn.log"</span></span></div><div class="line"><span class="tag">                 <span class="attr">filePattern</span>=<span class="string">"$&#123;sys:user.home&#125;/logs/hpaasvc/$$&#123;date:yyyy-MM&#125;/warn-%d&#123;yyyy-MM-dd&#125;-%i.log"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Filters</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"WARN"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"ERROR"</span> <span class="attr">onMatch</span>=<span class="string">"DENY"</span> <span class="attr">onMismatch</span>=<span class="string">"NEUTRAL"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">Filters</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"100 MB"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">"RollingFileError"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;sys:user.home&#125;/logs/hpaasvc/error.log"</span></span></div><div class="line"><span class="tag">                 <span class="attr">filePattern</span>=<span class="string">"$&#123;sys:user.home&#125;/logs/hpaasvc/$$&#123;date:yyyy-MM&#125;/error-%d&#123;yyyy-MM-dd&#125;-%i.log"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">"ERROR"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">"100 MB"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">appenders</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">loggers</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--过滤掉spring和hibernate的一些无用的debug信息--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"org.springframework"</span> <span class="attr">level</span>=<span class="string">"INFO"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">logger</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"org.hibernate"</span> <span class="attr">level</span>=<span class="string">"INFO"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">logger</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"all"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"Console"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"RollingFileInfo"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"RollingFileWarn"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"RollingFileError"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">root</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">loggers</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>配置<code>struts.xml</code>文件</p>
+<blockquote>
+<p>在<code>/src/main/resources/</code>目录下创建<code>struts.xml</code>文件，内容如下</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></div><div class="line"><span class="meta">        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"</span></div><div class="line"><span class="meta">        "http://struts.apache.org/dtds/struts-2.5.dtd"&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--配置为开发者模式--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.devMode"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line">    <span class="comment">&lt;!--配置扩展名为action--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.action.extension"</span> <span class="attr">value</span>=<span class="string">"action"</span>/&gt;</span></div><div class="line">    <span class="comment">&lt;!--配置UI主题为simple，避免struts2自动生成主题--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.ui.theme"</span> <span class="attr">value</span>=<span class="string">"simple"</span>/&gt;</span></div><div class="line">  </div><div class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">		<span class="comment">&lt;!-- 这里用来配置所有将要被Struts2拦截的action请求 --&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">package</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>Struts2</code>配置基本完成，创建测试类以及测试页面</p>
+<ul>
+<li><p>在<code>/src/main/webapp/</code>下创建<code>test.jsp</code>文件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;测试&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    这里是Action测试页面</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>/src/main/java/</code>下创建包<code>com.yhy.oa</code>，并在包内创建测试类<code>TestAction</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    <span class="comment">// 返回success到Struts2中</span></div><div class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>将该测试<code>TestAction</code>配置到<code>struts.xml</code>文件中，如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--当action的name与method名称一致时，可以省略method字段--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"test"</span> <span class="attr">class</span>=<span class="string">"com.yhy.oa.TestAction"</span> <span class="attr">method</span>=<span class="string">"execute"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--根据当前action返回的结果确定将要转发的页面--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/test.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>测试结果</p>
+<blockquote>
+<p>在浏览器输入<code>http://localhost:8080/test.action</code>后如果显示”这里是Action测试页面”则说明<code>Struts2</code>配置成功。</p>
+</blockquote>
+<p><img src="/assets/img/blog/oa-ssh/struts-test-success.png" alt="project"></p>
+</li>
+</ul>
+<h2 id="三、配置Spring框架"><a href="#三、配置Spring框架" class="headerlink" title="三、配置Spring框架"></a>三、配置<code>Spring</code>框架</h2><ul>
+<li><p>通过<code>Maven</code>添加<code>Spring</code>依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">version.spring</span>&gt;</span>5.0.1.RELEASE<span class="tag">&lt;/<span class="name">version.spring</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;version.spring&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--本来引入'spring-context'包即可将其他所有spring包也引入,但会发生版本不一致的情况,所以强行再引入相同版本的'spring-web'包,这样能保证spring所有包的版本一致--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;version.spring&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>配置<code>applicationContext.xml</code>文件</p>
+<blockquote>
+<p>在<code>/src/main/resources/</code>目录下创建<code>applicationContext.xml</code>文件，内容如下</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line"><span class="tag">       <span class="attr">xmlns:conext</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></div><div class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--自动扫描与装配bean,扫描本包以及子包--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">conext:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.yhy.oa"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>测试<code>Spring</code>配置结果</p>
+<ul>
+<li><p>创建测试类<code>TestSpring</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSpring</span> </span>&#123;</div><div class="line">    ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        TestAction ta = (TestAction) ac.getBean(<span class="string">"testAction"</span>);</div><div class="line">        System.out.println(ta);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>既然在<code>applicationContext.xml</code>中配置了<code>bean</code>的自动扫描与装配，那就不需要一一声明<code>bean</code>了，直接在<code>bean</code>中添加注解即可。</p>
+<blockquote>
+<p>声明<code>bean</code>的注解有以下四种，任意一种都可以（不过区别一目了然）</p>
+<p><code>@Component</code></p>
+<p><code>@Controller</code></p>
+<p><code>@Service</code></p>
+<p><code>@Repository</code></p>
+<p>这里简单用下<code>@Controller</code></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Controller</span></div><div class="line"><span class="meta">@Scope</span>(<span class="string">"prototype"</span>) <span class="comment">// 将Scope配置为prototype，表示每一次请求都会创建新的bean</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试<code>TestSpring</code>中的<code>test()</code>方法，如果能运行成功，说明<code>Spring</code>已经配置成功</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="四、将Struts2与Spring整合"><a href="#四、将Struts2与Spring整合" class="headerlink" title="四、将Struts2与Spring整合"></a>四、将<code>Struts2</code>与<code>Spring</code>整合</h2><ul>
+<li><p>通过<code>Maven</code>添加<code>struts2-spring-plugin</code>插件，即<code>Struts2</code>与<code>Spring</code>的整合补丁包</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.struts<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>struts2-spring-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;version.struts2&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>web.xml</code>文件中配置<code>Spring</code>的加载监听器</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:applicationContext*.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>修改struts.xml</code>中配置<code>/test.action</code>中的<code>class</code>属性为当前<code>bean</code>，如下</p>
+<blockquote>
+<p>将原来的<code>com.yhy.oa.TestAction</code>改为<code>testAction</code>即可</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"test"</span> <span class="attr">class</span>=<span class="string">"testAction"</span> <span class="attr">method</span>=<span class="string">"execute"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--根据当前action返回的结果确定将要转发的页面--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/test.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>整合完毕，测试结果</p>
+<ul>
+<li><p>修改<code>test.jsp</code>内容</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;测试&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    Struts2与Spring整合成功</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试结果</p>
+<blockquote>
+<p>在浏览器输入<code>http://localhost:8080/test.action</code>后如果显示”Struts2与Spring整合成功”则说明<code>Struts2</code>与<code>Spring</code>整合成功。</p>
+</blockquote>
+<p><img src="/assets/img/blog/oa-ssh/struts-spring-success.png" alt="project"></p>
+</li>
+</ul>
+</li>
+<li><p>可能出现的错误</p>
+<blockquote>
+<p><code>java.lang.ClassNotFoundException: org.springframework.beans.factory.access.BeanFactoryReference</code></p>
+<p>原因是导入的<code>Spring</code>包中，有些包版本不一致，将相同版本的包手动在<code>Maven</code>中导入即可。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="五、让Spring管理Hibernate的SessionFactory实例"><a href="#五、让Spring管理Hibernate的SessionFactory实例" class="headerlink" title="五、让Spring管理Hibernate的SessionFactory实例"></a>五、让<code>Spring</code>管理<code>Hibernate</code>的<code>SessionFactory</code>实例</h2><blockquote>
+<p>既然是整合，就需要<code>Spring</code>来统一管理<code>SessionFactory</code>实例，只需要一个实例即可。</p>
+</blockquote>
+<ul>
+<li><p>通过<code>Maven</code>添加<code>hibernate-core</code>、<code>c3p0</code>、<code>mysql-connector-java</code>和<code>spring-orm</code>依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;version.hibernate&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;version.mysql&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mchange<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>c3p0<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;version.c3p0&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-orm<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;version.spring&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>配置<code>web.properties</code>文件</p>
+<blockquote>
+<p>在<code>/src/main/resources/</code>目录下创建<code>web.properties</code>文件，内容如下</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">jdbc.url=jdbc:mysql://localhost:3306/oa?useUnicode=true&amp;characterEncoding=UTF-8&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</div><div class="line">jdbc.driver=com.mysql.cj.jdbc.Driver</div><div class="line">jdbc.user=root</div><div class="line">jdbc.password=000000</div></pre></td></tr></table></figure>
+</li>
+<li><p>配置<code>hibernate.cfg.xml</code>文件</p>
+<blockquote>
+<p>在<code>/src/main/resources/</code>目录下创建<code>hibernate.cfg.xml</code>文件，内容如下</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version='1.0' encoding='utf-8'?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE hibernate-configuration PUBLIC</span></div><div class="line"><span class="meta">        "-//Hibernate/Hibernate Configuration DTD//EN"</span></div><div class="line"><span class="meta">        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">hibernate-configuration</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">session-factory</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--数据库连接信息，如果整合Spring的话，就在applicationContext.xml文件中配置--&gt;</span></div><div class="line">        <span class="comment">&lt;!--&lt;property name="connection.url"&gt;jdbc:mysql://localhost:3306/oa&lt;/property&gt;--&gt;</span></div><div class="line">        <span class="comment">&lt;!--&lt;property name="connection.driver_class"&gt;com.mysql.cj.jdbc.Driver&lt;/property&gt;--&gt;</span></div><div class="line">        <span class="comment">&lt;!--&lt;property name="connection.username"&gt;root&lt;/property&gt;--&gt;</span></div><div class="line">        <span class="comment">&lt;!--&lt;property name="connection.password"&gt;000000&lt;/property&gt;--&gt;</span></div><div class="line"></div><div class="line">        <span class="comment">&lt;!--其他配置--&gt;</span></div><div class="line">        <span class="comment">&lt;!--session上下文配置--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"current_session_context_class"</span>&gt;</span>thread<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--是否显示SQL语句--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"show_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--自动建表模式--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hbm2ddl.auto"</span>&gt;</span>update<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--数据库方言--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dialect"</span>&gt;</span>org.hibernate.dialect.MySQLDialect<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="comment">&lt;!--映射文件--&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">session-factory</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">hibernate-configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>配置<code>SessionFactory</code></p>
+<blockquote>
+<p>在<code>applicationContext.xml</code>中配置<code>sessionFactory</code>,具体如下</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--导入外部properties文件--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">conext:property-placeholder</span> <span class="attr">location</span>=<span class="string">"web.properties"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.hibernate5.LocalSessionFactoryBean"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"configLocation"</span> <span class="attr">value</span>=<span class="string">"classpath:hibernate.cfg.xml"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></div><div class="line">      <span class="comment">&lt;!--数据库连接信息--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.user&#125;"</span>/&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></div><div class="line">      <span class="comment">&lt;!--其他配置--&gt;</span></div><div class="line">      <span class="comment">&lt;!--初始化是获取x个连接，取值时在minPoolSize和maxPoolSize之间，默认为3--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialPoolSize"</span> <span class="attr">value</span>=<span class="string">"3"</span>/&gt;</span></div><div class="line">      <span class="comment">&lt;!--连接池中保留的最小连接数量,默认为3--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minPoolSize"</span> <span class="attr">value</span>=<span class="string">"3"</span>/&gt;</span></div><div class="line">      <span class="comment">&lt;!--连接池中保留的最大连接数量,默认值为15--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxPoolSize"</span> <span class="attr">value</span>=<span class="string">"15"</span>/&gt;</span></div><div class="line">      <span class="comment">&lt;!--当连接池中连接耗尽的时候,c3p0一次同时获取到的连接数,默认为3--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"acquireIncrement"</span> <span class="attr">value</span>=<span class="string">"3"</span>/&gt;</span></div><div class="line">      <span class="comment">&lt;!--控制数据源内加载的PreparedStatements数量。如果maxStatements与maxStatementPerConnection均为0,则缓存关闭.默认为0--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxStatements"</span> <span class="attr">value</span>=<span class="string">"8"</span>/&gt;</span></div><div class="line">      <span class="comment">&lt;!--定义了连接池内单个连接所拥有的最大缓存statements数量,默认为0--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxStatementsPerConnection"</span> <span class="attr">value</span>=<span class="string">"5"</span>/&gt;</span></div><div class="line">      <span class="comment">&lt;!--最大空闲时间，1800s内未使用则连接被回收。若为0则永不回收。默认为0--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxIdleTime"</span> <span class="attr">value</span>=<span class="string">"1800"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>测试<code>Hebernate</code>是否配置成功</p>
+<blockquote>
+<p>在测试类添加一下代码，如果能运行通过的话，说明<code>Hibernate</code>的<code>SessionFactory</code>已经配置成功</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSpring</span> </span>&#123;</div><div class="line">  ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</div><div class="line"></div><div class="line">  <span class="meta">@Test</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testHibernate</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    SessionFactory sf = (SessionFactory) ac.getBean(<span class="string">"sessionFactory"</span>);</div><div class="line">    System.out.println(sf);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="六、配置事务管理"><a href="#六、配置事务管理" class="headerlink" title="六、配置事务管理"></a>六、配置事务管理</h2><ul>
+<li><p>配置声明式事务管理，这里采用注解方式</p>
+<blockquote>
+<p>在<code>applicationContext.xml</code>中配置<code>txManager</code>,具体如下</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--配置声明式事务管理，这里采用注解方式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"txManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.orm.hibernate5.HibernateTransactionManager"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sessionFactory"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"txManager"</span>/&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>测试事务</p>
+<blockquote>
+<p>创建<code>User</code>类（必须设置<code>get/set</code>方法，否则<code>Hibernate</code>映射时找不到字段），如下</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> Long id;</div><div class="line">  <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> Long <span class="title">getId</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> id;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Long id)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.id = id;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> name;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在<code>/src/main/resources/hbm/</code>下配置<code>User.hbm.xml</code>映射文件，如下</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version='1.0' encoding='utf-8'?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE hibernate-mapping PUBLIC</span></div><div class="line"><span class="meta">        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span></div><div class="line"><span class="meta">        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span> <span class="attr">package</span>=<span class="string">"com.yhy.oa.entity"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"com.yhy.oa.entity.User"</span> <span class="attr">table</span>=<span class="string">"oa_user"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">type</span>=<span class="string">"java.lang.Long"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">"native"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>配置映射文件到到<code>hibernate.cfg.xml</code>中，如下</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hibernate-configuration</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">session-factory</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--...--&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--映射文件，路径一定要用/表示--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">mapping</span> <span class="attr">resource</span>=<span class="string">"hbm/User.hbm.xml"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">session-factory</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">hibernate-configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在<code>service</code>层使用事务操作数据库，比如<code>TestService</code>中</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestService</span> </span>&#123;</div><div class="line">  <span class="meta">@Resource</span></div><div class="line">  <span class="keyword">private</span> SessionFactory sessionFactory;</div><div class="line"></div><div class="line">  <span class="meta">@Transactional</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">()</span> </span>&#123;</div><div class="line">    Session session = sessionFactory.getCurrentSession();</div><div class="line">    session.save(<span class="keyword">new</span> User());</div><div class="line">    <span class="comment">// 这行代码会抛异常，导致事务回滚，如果注释了改行代码，则事务就会提交成功</span></div><div class="line">    <span class="keyword">int</span> test = <span class="number">1</span> / <span class="number">0</span>;</div><div class="line">    session.save(<span class="keyword">new</span> User());</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>最后在<code>TestSpring</code>中添加测试方法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testTransaction</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">  TestService ts = (TestService) ac.getBean(<span class="string">"testService"</span>);</div><div class="line">  ts.save();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果测试通过，则说明<code>SSH</code>框架整合完毕。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="七、一些可能出现的错误"><a href="#七、一些可能出现的错误" class="headerlink" title="七、一些可能出现的错误"></a>七、一些可能出现的错误</h2><ul>
+<li><p>错误</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nested exception is org.hibernate.boot.MappingNotFoundException: Mapping (RESOURCE) not found : com/yhy/oa/entity/User.hbm.xml : origin(com/yhy/oa/entity/User.hbm.xml)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>原因：映射文件找不到，本来配置文件要与<code>Entity</code>放到同一目录的，不过使用<code>Maven</code>时，所有资源/配置文件都要放到<code>resources</code>目录下。</p>
+<p>解决方案：将<code>*.hbm.xml</code>文件都放到<code>resources</code>目录下，也可以创建子目录。同时别忘了修改<code>hibernate.cfg.xml</code>中<code>mapping</code>的路径。</p>
+</blockquote>
+</li>
+<li><p>错误</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">org.hibernate.HibernateException: save is not valid without active transaction</div></pre></td></tr></table></figure>
+<blockquote>
+<p>原因：在<code>hibernate.cfg.xml</code>中配置了<code>hibernate.current_session_context_class</code>为<code>thread</code>。按我简单的理解就是将<code>getCurrentSession()</code>返回的<code>session</code>绑定到当前运行线程中。比较专业的说法是此<code>session</code>的上下文是<code>thread</code>，但不是<code>spring</code>已经托管的那个<code>Session</code>对象。再用哥那大腿想了几下，瞬间了解了一些。所以获取的<code>session</code>是在<code>spring</code>代理的上下文之外的的当前线程之中，所以此<code>session</code>并非事务管理器代理的那个<code>session</code>，不会自动开启事务。根据官方提示：第三方框架提供了基于代理（<code>proxy</code>）或者基于拦截器（<code>interception</code>）的上下文相关的会话的管理，所以把<code>hibernate.current_session_context_class</code>设置删除了，一切又回到当初风平浪静的日子了。</p>
+<p>解决方案：把<code>hibernate.current_session_context_class</code>设置删除即可</p>
+</blockquote>
+<hr>
+</li>
+</ul>
+<p>到此，<code>SSH</code>框架搭建基本完成。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -195,65 +427,135 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blog.yhyzgn.top/2017/11/18/oa-ssh/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/16/idea-maven-tomcat/" class="archive-article-date">
-  	<time datetime="2017-11-16T15:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/16/idea-maven-tomcat/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Intellij Idea下搭建Maven框架与Tomcat服务器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/16/idea-maven-tomcat/">Intellij Idea下搭建Maven框架与Tomcat服务器</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Idea</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Maven</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境及工具"><span class="toc-number">1.</span> <span class="toc-text">开发环境及工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一、创建项目，配置Maven和Tomcat环境"><span class="toc-number">2.</span> <span class="toc-text">一、创建项目，配置Maven和Tomcat环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、配置Struts2框架"><span class="toc-number">3.</span> <span class="toc-text">二、配置Struts2框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、配置Spring框架"><span class="toc-number">4.</span> <span class="toc-text">三、配置Spring框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、将Struts2与Spring整合"><span class="toc-number">5.</span> <span class="toc-text">四、将Struts2与Spring整合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、让Spring管理Hibernate的SessionFactory实例"><span class="toc-number">6.</span> <span class="toc-text">五、让Spring管理Hibernate的SessionFactory实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六、配置事务管理"><span class="toc-number">7.</span> <span class="toc-text">六、配置事务管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七、一些可能出现的错误"><span class="toc-number">8.</span> <span class="toc-text">七、一些可能出现的错误</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://blog.yhyzgn.top/2017/11/18/oa-ssh/",
+  owner: 'yhyzgn',
+  repo: 'yhyzgn.github.io',
+  oauth: {
+    client_id: 'ca08cc2446a385198314',
+    client_secret: '806260844b56af63119fa89d207e684d4b7084f5',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -276,8 +578,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

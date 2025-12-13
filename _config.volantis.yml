@@ -417,9 +417,18 @@ comments:
     # emit-metadata: "0"
     # lang: "zh-CN"
     # 以上配置按照 yml 格式增删填写即可
-    theme:
-      light: "light" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/light.css
-      dark: "dark" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/dark.css
+    enable: true
+    # 你的 Giscus 配置参数
+    repo: yhyzgn/yhyzgn.github.io         # ❗ 你的 GitHub 仓库名 (格式：用户名/仓库名)
+    repo_id: R_kgDOOueucA                 # ❗ 必须填写，稍后获取
+    category: Comments                    # ❗ 存放 Discussion 的分类名称
+    category_id: DIC_kwDOOueucM4CzuxU     # ❗ 必须填写，稍后获取
+    mapping: pathname                     # 映射关系，推荐使用 pathname
+    theme: preferred_color_scheme         # 评论主题，跟随系统亮/暗模式
+    reactions_enabled: 1                  # 启用 Reaction (1=是, 0=否)
+    # theme:
+    #   light: "light" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/light.css
+    #   dark: "dark" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/dark.css
 
   # beaudar
   # https://beaudar.lipk.org/

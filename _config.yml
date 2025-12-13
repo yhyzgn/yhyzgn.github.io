@@ -41,7 +41,9 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+# 启用后，每当我们使用 `hexo new post_title` 创建文章时，
+# Hexo 会自动创建一个与文章 Markdown 文件同名的文件夹，用于存放资源。
+post_asset_folder: true
 relative_link: false
 future: true
 syntax_highlighter: highlight.js

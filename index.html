@@ -2245,7 +2245,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     root: '/',
     debug: "env",
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1660614606622/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1765608953585),
+    lastupdate: new Date(1765610320194),
     cdn: {
       izitoast_css: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/css/iziToast.min.css',
       izitoast_js: 'https://cdn.bootcdn.net/ajax/libs/izitoast/1.4.0/js/iziToast.min.js',
@@ -2700,7 +2700,7 @@ Qu...
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time itemprop="dateCreated datePublished" datetime="2025-12-13T06:55:47+00:00">2025-12-13</time>
+        <time itemprop="dateCreated datePublished" datetime="2025-12-13T07:17:31+00:00">2025-12-13</time>
         
       </div>
       
@@ -3055,9 +3055,9 @@ Qu...
 
   function check_giscus() {
     if (volantis.dark.mode === "dark") {
-      volantis.giscus.Theme = 'dark';
+      volantis.giscus.Theme = '';
     } else {
-      volantis.giscus.Theme = 'light';
+      volantis.giscus.Theme = '';
     }
 
     return document.getElementById("giscus_container");
@@ -3066,7 +3066,7 @@ Qu...
   function pjax_giscus() {
     const HEAD = check_giscus();
     if (!HEAD) return;
-    let cfg = Object.assign({"theme":{"light":"light","dark":"dark"}},pdata.commentConfig)
+    let cfg = Object.assign({"theme":"preferred_color_scheme","enable":true,"repo":"yhyzgn/yhyzgn.github.io","repo_id":"R_kgDOOueucA","category":"Comments","category_id":"DIC_kwDOOueucM4CzuxU","mapping":"pathname","reactions_enabled":1},pdata.commentConfig)
     const script = document.createElement('script');
     script.setAttribute('src', 'https://giscus.app/client.js');
     Object.keys(cfg).forEach(k=>{

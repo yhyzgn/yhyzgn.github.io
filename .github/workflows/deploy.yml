@@ -5,6 +5,10 @@ on:
     branches:
       - main # default branch
 
+# 确保这段存在，且缩进正确
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest

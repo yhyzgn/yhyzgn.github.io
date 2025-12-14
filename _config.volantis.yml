@@ -165,7 +165,7 @@ cover:
     home: true
     archive: true
     others: false # can be written in front-matter 'cover: true'
-  background: https://gcore.jsdelivr.net/gh/MHG-LAB/cron@gh-pages/bing/bing.jpg
+  background: volantis-static/media/wallpaper/minimalist/2020/001.webp
   # background: https://bing.ioliu.cn/v1/rand?w=1920&h=1200
   logo: # https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-Cover@3x.png
   title: 'Volantis'
@@ -426,6 +426,9 @@ comments:
     mapping: pathname                     # 映射关系，推荐使用 pathname
     theme: preferred_color_scheme         # 评论主题，跟随系统亮/暗模式
     reactions_enabled: 1                  # 启用 Reaction (1=是, 0=否)
+    emit-metadata: "0"
+    lang: "zh-CN"
+    input-position: "top"
     # theme:
     #   light: "light" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/light.css
     #   dark: "dark" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/dark.css
@@ -723,8 +726,11 @@ plugins:
   ################ required plugins ################
   # jquery
   globalJquery: false # 全局引入 jquery
+  clipboard:
+    enable: true
+  fontawesome: volantis-static/libs/@fortawesome/fontawesome-pro/css/all.min.css
   # fontawesome
-  fontawesome: true
+  # fontawesome: true
   ################ optional plugins ################
   # issues api
   sitesjs:
@@ -788,29 +794,29 @@ plugins:
   ######## Plugins for Count:
   # npm i hexo-wordcount
   wordcount:
-    enable: #true
+    enable: true
 
   busuanzi:
-    enable: #true
+    enable: true
 
   ######## Plugins for ...
   # Button Ripple Effect
   nodewaves:
-    enable: #true
+    enable: true
 
   # fontawesome V6:  https://fontawesome.com/docs/web/style/animate
   # fontawesome animation for fontawesome V5
   fontawesome_animation:
-    enable: #true
+    enable: true
  
   # Typing Effects
   comment_typing:
-    enable: #true
+    enable: true
  
   # 视差滚动效果 Slide Background
   parallax:
-    enable: #true
-    position: cover       # cover: sticky on the cover.   fixed: Fixed as background for the site.
+    enable: true
+    position: fixed       # cover: sticky on the cover.   fixed: Fixed as background for the site.
     shuffle: true         # shuffle playlist
     duration: 10000       # Duration (ms)
     fade: 1500            # fade duration (ms) (Not more than 1500)
@@ -898,7 +904,7 @@ plugins:
   #   icon: fa-solid fa-moon # 可自定义
   #   toggle: darkmode
   darkmode:
-    enable: #true
+    enable: true
 
   # 旧版 Internet Explorer 淘汰行动
   # https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support

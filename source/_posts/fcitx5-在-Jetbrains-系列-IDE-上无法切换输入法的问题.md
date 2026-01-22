@@ -32,7 +32,7 @@ tags: fcitx5, jetbrains, ide, linux, fcitx5-jetbrains-ide-linux, input-method, l
    > 完整安装命令
 
    ```bash
-   sudo apt install fcitx5 fcitx5-gtk fcitx5-gtk2 fcitx5-qt fcitx5-configtool fcitx5-chinese-addons fcitx5-rime librime-lua fcitx5-table-extra fcitx5-zhuyin kcm-fcitx5 fcitx5-m17n qt5-qtbase qt5-qtwebkit fcitx5-qt5
+   sudo dnf install fcitx5 fcitx5-gtk fcitx5-gtk2 fcitx5-qt fcitx5-configtool fcitx5-chinese-addons fcitx5-rime librime-lua fcitx5-table-extra fcitx5-zhuyin kcm-fcitx5 fcitx5-m17n qt5-qtbase qt5-qtwebkit fcitx5-qt5
    ```
 
 2. 配置 `locale` 信息
